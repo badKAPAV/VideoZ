@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "673466007097",
+    "project_id": "video-uploader-696fa",
+    "storage_bucket": "video-uploader-696fa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:673466007097:android:b9efd400a1b57d53ab97e8",
+        "android_client_info": {
+          "package_name": "com.example.video_uploader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "673466007097-p3fv6pra2kcin9b1v9qvg9gi9r82t1da.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVP-33Ms-_fPgUYNdXN5DYop_79syGw_c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "673466007097-p3fv6pra2kcin9b1v9qvg9gi9r82t1da.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
