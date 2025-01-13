@@ -18,6 +18,7 @@ A short video uploading social media platform made using Flutter and Firebase. F
 
 ## Project Structure
 
+'''
 lib/
 │
 ├── controllers/                                # Contains workflow controllers
@@ -56,3 +57,4 @@ lib/
 │
 ├── constants.dart                           # Contains every constants used
 └── main.dart                                  # Entry point of the application
+'''
