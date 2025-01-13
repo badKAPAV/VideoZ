@@ -18,25 +18,25 @@ A short video uploading social media platform made using Flutter and Firebase. F
 
 ## Project Structure
 
-'''
+```
 lib/
 │
-├── controllers/                                # Contains workflow controllers
-│   ├── auth_controller.dart              # Controls auth functions
-│   ├── comment_controller.dart      # Controls commenting functions
-│   ├── profile_controller.dart           # Controls profile functions
-│   ├── search_controller.dart           # Controls searching functions
-│   ├── video_upload_controller.dart      # Controls video uploading functions
-│   └── video_controller.dart            # Controls video playing functions
+├── controllers/                             # Contains workflow controllers
+│   ├── auth_controller.dart                 # Controls auth functions
+│   ├── comment_controller.dart              # Controls commenting functions
+│   ├── profile_controller.dart              # Controls profile functions
+│   ├── search_controller.dart               # Controls searching functions
+│   ├── video_upload_controller.dart         # Controls video uploading functions
+│   └── video_controller.dart                # Controls video playing functions
 │
-├── models/                                     # Contains data models
-│   ├── comment.dart                       # Comment database model
-│   ├── user.dart                               # User data model
-│   └── video.dart                             # Video data model
+├── models/                                  # Contains data models
+│   ├── comment.dart                         # Comment database model
+│   ├── user.dart                            # User data model
+│   └── video.dart                           # Video data model
 │
-├── views/                                        # Contains the UI pages/screens
+├── views/                                   # Contains the UI pages/screens
 │   ├── screens/   
-│        ├── auth/                               # Contains the auth pages/screens
+│        ├── auth/                           # Contains the auth pages/screens
 │             ├── login_screen.dart
 │             ├── signup_screen.dart
 │        ├── add_video_screen.dart
@@ -48,7 +48,7 @@ lib/
 │        ├── profile_video_screen.dart
 │        ├── search_screen.dart
 │        ├── video_screen.dart
-│   ├── widgets/                               # Contains additional UI elements
+│   ├── widgets/                             # Contains additional UI elements
 │        ├── circle_animation.dart
 │        ├── custom_icon.dart
 │        ├── showSnackbar.dart
@@ -56,5 +56,5 @@ lib/
 │        ├── video_player_item.dart
 │
 ├── constants.dart                           # Contains every constants used
-└── main.dart                                  # Entry point of the application
-'''
+└── main.dart                                # Entry point of the application
+```
