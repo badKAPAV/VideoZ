@@ -1,6 +1,6 @@
-# video_uploader
+# VideoZ
 
-A new Flutter project.
+A short video uploading social media platform made using Flutter and Firebase. For advanced state management, GetX has been used. 
 
 ## Getting Started
 
