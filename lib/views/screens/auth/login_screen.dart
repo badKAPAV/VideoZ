@@ -18,22 +18,19 @@ class LoginScreen extends StatelessWidget {
         body: Container(
           alignment: Alignment.center,
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Text(
-              'Video Uploader',
-              style: TextStyle(
-                  fontSize: 35,
-                  color: buttonColor,
-                  fontWeight: FontWeight.w900),
-            ),
-            const Text(
-              'Login',
-              style: TextStyle(
-                  fontSize: 25,
-                  // color: buttonColor,
-                  fontWeight: FontWeight.w900),
-            ),
+            Image.asset('assets/logo.png'),
             const SizedBox(
               height: 25,
+            ),
+            const Text(
+              'Log right back in!',
+              style: TextStyle(
+                  fontSize: 16,
+                  // color: buttonColor,
+                  fontWeight: FontWeight.w400),
+            ),
+            const SizedBox(
+              height: 20,
             ),
             Container(
               width: MediaQuery.of(context).size.width,
@@ -50,47 +47,52 @@ class LoginScreen extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.symmetric(horizontal: 20),
               child: TextInputField(
-                  controller: _passwordController,
-                  labelText: 'Password',
-                  icon: Icons.lock,
-                  isObscure: true,),
+                controller: _passwordController,
+                labelText: 'Password',
+                icon: Icons.lock,
+                isObscure: true,
+              ),
             ),
             const SizedBox(
               height: 20,
             ),
             InkWell(
-              onTap: () => authController.loginUser(_emailController.text, _passwordController.text),
+              onTap: () => authController.loginUser(
+                  _emailController.text, _passwordController.text),
               splashColor: Colors.white,
               child: Container(
-                width: MediaQuery.of(context).size.width - 40,
-                height: 50,
-                decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.circular(5),
-                  color: buttonColor,
-                ),
-                child: const Center(
-                    child: Text(
-                  'Login',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ))
-              ),
+                  width: MediaQuery.of(context).size.width - 40,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.circular(5),
+                    color: buttonColor,
+                  ),
+                  child: const Center(
+                      child: Text(
+                    'Login',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ))),
             ),
             const SizedBox(
-              height: 15,
+              height: 25,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
                   'Don\'t have an account?',
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 16),
                 ),
                 InkWell(
-                  onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => SignupScreen())),
+                  onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => SignupScreen())),
                   child: Text(
-                    ' Register',
-                    style: TextStyle(fontSize: 20, color: buttonColor),
+                    ' Register here',
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: buttonColor,
+                        fontWeight: FontWeight.bold),
                   ),
                 )
               ],

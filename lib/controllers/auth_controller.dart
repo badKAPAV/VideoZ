@@ -7,46 +7,46 @@ import 'package:image_picker/image_picker.dart';
 import 'package:video_uploader/constants.dart';
 import 'package:video_uploader/models/user.dart' as model;
 import 'package:video_uploader/views/screens/home_screen.dart';
-
-import '../views/screens/auth/login_screen.dart';
+import 'package:video_uploader/views/screens/auth/login_screen.dart';
 
 class AuthController extends GetxController {
-
   static AuthController instance = Get.find();
 
   late Rx<User?> _user;
 
   late Rx<File?> _pickedImage;
 
-  File? get profilePhoto => _pickedImage.value;
+  final isLoading = false.obs;
 
+  File? get profilePhoto => _pickedImage.value;
   User get user => _user.value!;
 
   @override
   void onReady() {
     super.onReady();
     _user = Rx<User?>(firebaseAuth.currentUser);
+    _pickedImage = Rx<File?>(null);
     _user.bindStream(firebaseAuth.authStateChanges());
-    ever(_user, _setInitialScreen);
+    _setInitialScreen(_user.value);
   }
 
-  _setInitialScreen (User? user){
-    if(user==null){
+  _setInitialScreen(User? user) {
+    if (user == null) {
       Get.offAll(() => LoginScreen());
-    } else{
+    } else {
       Get.offAll(() => HomeScreen());
     }
   }
 
   void pickImage() async {
-    final pickedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (pickedImage!=null){
+    final pickedImageFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedImageFile != null) {
       Get.snackbar('Profile Picture', 'Profile picture selected successfully');
+      _pickedImage.value = File(pickedImageFile.path);
     }
-    _pickedImage = Rx<File?>(File(pickedImage!.path));
   }
 
-  // upload to storage
   Future<String> _uploadToStorage(File image) async {
     Reference ref = firebaseStorage
         .ref()
@@ -58,7 +58,6 @@ class AuthController extends GetxController {
     return downloadUrl;
   }
 
-  // register a user
   void registerUser(
       String username, String email, String password, File? image) async {
     try {
@@ -66,6 +65,7 @@ class AuthController extends GetxController {
           email.isNotEmpty &&
           password.isNotEmpty &&
           image != null) {
+        isLoading.value = true;
         UserCredential cred = await firebaseAuth.createUserWithEmailAndPassword(
             email: email, password: password);
         String downloadUrl = await _uploadToStorage(image);
@@ -74,41 +74,56 @@ class AuthController extends GetxController {
             profilePhoto: downloadUrl,
             email: email,
             uid: cred.user!.uid);
-            await firestore.collection('users').doc(cred.user!.uid).set(user.toJson());
-            Get.snackbar('Success', 'Account created successfully');
-      } else{
+
+        await firestore
+            .collection('users')
+            .doc(cred.user!.uid)
+            .set(user.toJson());
+
+        Get.snackbar('Success', 'Account created successfully');
+        Get.offAll(() => HomeScreen());
+      } else {
         Get.snackbar(
-        'Error creating account',
-        'Please enter all fields',
-      );
+          'Error creating account',
+          'Please enter all fields and select a profile picture',
+        );
       }
     } catch (e) {
       Get.snackbar(
         'Error creating account',
         e.toString(),
       );
+    } finally {
+      isLoading.value = false;
     }
   }
 
-  void loginUser(String email, String password) async{
-    try{
-      if(email.isNotEmpty && password.isNotEmpty){
-        UserCredential cred = await firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+  void loginUser(String email, String password) async {
+    try {
+      if (email.isNotEmpty && password.isNotEmpty) {
+        isLoading.value = true;
+        await firebaseAuth.signInWithEmailAndPassword(
+            email: email, password: password);
         Get.snackbar("Success", "Signed in successfully");
+
+        Get.offAll(() => HomeScreen());
       } else {
         Get.snackbar("Error signing in", "Please enter all fields");
       }
-    }catch(e){
+    } catch (e) {
       Get.snackbar("Error signing in", e.toString());
+    } finally {
+      isLoading.value = false;
     }
   }
 
-  void signOut() async{
-    try{
+  void signOut() async {
+    try {
       await firebaseAuth.signOut();
+
+      Get.offAll(() => LoginScreen());
     } catch (e) {
       Get.snackbar('Error signing out', e.toString());
     }
   }
-
 }

@@ -12,10 +12,11 @@ class AddVideoScreen extends StatelessWidget {
     final video = await ImagePicker().pickVideo(source: src);
 
     if (video != null) {
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => ConfirmScreen(
-        videoFile: File(video.path),
-        videoPath: video.path,
-      )));
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => ConfirmScreen(
+                videoFile: File(video.path),
+                videoPath: video.path,
+              )));
       // Navigator.push(context, route)
     }
   }
@@ -30,7 +31,9 @@ class AddVideoScreen extends StatelessWidget {
                   child: const Row(
                     children: [
                       Icon(Icons.image),
-                      // SizedBox(width: 10,),
+                      SizedBox(
+                        width: 6,
+                      ),
                       Padding(
                         padding: EdgeInsets.all(7.0),
                         child: Text(
@@ -46,7 +49,9 @@ class AddVideoScreen extends StatelessWidget {
                   child: const Row(
                     children: [
                       Icon(Icons.camera_alt),
-                      // SizedBox(width: 10,),
+                      SizedBox(
+                        width: 6,
+                      ),
                       Padding(
                         padding: EdgeInsets.all(7.0),
                         child: Text(
@@ -61,13 +66,18 @@ class AddVideoScreen extends StatelessWidget {
                   onPressed: () => Navigator.of(context).pop(),
                   child: const Row(
                     children: [
-                      Icon(Icons.cancel),
-                      // SizedBox(width: 10,),
+                      Icon(
+                        Icons.cancel,
+                        color: Colors.red,
+                      ),
+                      SizedBox(
+                        width: 6,
+                      ),
                       Padding(
                         padding: EdgeInsets.all(7.0),
                         child: Text(
                           'Cancel',
-                          style: TextStyle(fontSize: 20),
+                          style: TextStyle(fontSize: 20, color: Colors.red),
                         ),
                       ),
                     ],
@@ -85,15 +95,28 @@ class AddVideoScreen extends StatelessWidget {
           onTap: () => showOptionsDialog(context),
           child: Container(
             width: 190,
-            height: 50,
-            decoration: BoxDecoration(color: buttonColor),
+            height: 200,
+            decoration: BoxDecoration(
+                color: buttonColor, borderRadius: BorderRadius.circular(30)),
             child: const Center(
-                child: Text(
-              'Add video',
-              style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.add_circle_rounded,
+                  size: 100,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'Add a video',
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
             )),
           ),
         ),

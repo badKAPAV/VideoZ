@@ -12,12 +12,7 @@
           "package_name": "com.example.video_uploader"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "673466007097-p3fv6pra2kcin9b1v9qvg9gi9r82t1da.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
           "current_key": "AIzaSyCVP-33Ms-_fPgUYNdXN5DYop_79syGw_c"
@@ -25,12 +20,7 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "673466007097-p3fv6pra2kcin9b1v9qvg9gi9r82t1da.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

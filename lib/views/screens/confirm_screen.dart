@@ -7,12 +7,12 @@ import 'package:video_uploader/controllers/upload_video_controller.dart';
 import 'package:video_uploader/views/widgets/text_input_field.dart';
 
 class ConfirmScreen extends StatefulWidget {
-
   final File videoFile;
 
   final String videoPath;
 
-  const ConfirmScreen({super.key, required this.videoFile, required this.videoPath});
+  const ConfirmScreen(
+      {super.key, required this.videoFile, required this.videoPath});
 
   @override
   State<ConfirmScreen> createState() => _ConfirmScreenState();
@@ -23,10 +23,11 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
 
   final TextEditingController _songController = TextEditingController();
   final TextEditingController _titleController = TextEditingController();
-  final TextEditingController _descriptionController= TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _categoryController = TextEditingController();
 
-  UploadVideoController uploadVideoController = Get.put(UploadVideoController());
+  UploadVideoController uploadVideoController =
+      Get.put(UploadVideoController());
 
   @override
   void initState() {
@@ -52,13 +53,17 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 30,),
+            const SizedBox(
+              height: 30,
+            ),
             SizedBox(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height/1.5,
+              height: MediaQuery.of(context).size.height / 1.5,
               child: VideoPlayer(controller),
             ),
-            const SizedBox(height: 30,),
+            const SizedBox(
+              height: 30,
+            ),
             SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Column(
@@ -66,29 +71,56 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                 children: [
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 10),
-                    width: MediaQuery.of(context).size.width-20,
-                    child: TextInputField(controller: _songController, labelText: 'Song Name', icon: Icons.music_note),
+                    width: MediaQuery.of(context).size.width - 20,
+                    child: TextInputField(
+                        controller: _songController,
+                        labelText: 'Song Name',
+                        icon: Icons.music_note),
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 10),
-                    width: MediaQuery.of(context).size.width-20,
-                    child: TextInputField(controller: _titleController, labelText: 'Title', icon: Icons.title),
+                    width: MediaQuery.of(context).size.width - 20,
+                    child: TextInputField(
+                        controller: _titleController,
+                        labelText: 'Title',
+                        icon: Icons.title),
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 10),
-                    width: MediaQuery.of(context).size.width-20,
-                    child: TextInputField(controller: _descriptionController, labelText: 'Description', icon: Icons.description),
+                    width: MediaQuery.of(context).size.width - 20,
+                    child: TextInputField(
+                        controller: _descriptionController,
+                        labelText: 'Description',
+                        icon: Icons.description),
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 10),
-                    width: MediaQuery.of(context).size.width-20,
-                    child: TextInputField(controller: _categoryController, labelText: 'Category', icon: Icons.category),
+                    width: MediaQuery.of(context).size.width - 20,
+                    child: TextInputField(
+                        controller: _categoryController,
+                        labelText: 'Category',
+                        icon: Icons.category),
                   ),
-                  const SizedBox(height: 10,),
-                  ElevatedButton(onPressed: () => uploadVideoController.uploadVideo(_songController.text.trim(), _titleController.text.trim(), _descriptionController.text.trim(), _categoryController.text.trim(), widget.videoPath), child: const Text('Post Now', style: TextStyle(fontSize: 20, color: Colors.white),))
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Obx(() {
+                    return uploadVideoController.isLoading.value
+                        ? const Center(child: CircularProgressIndicator())
+                        : ElevatedButton(
+                            onPressed: () {},
+                            child: const Text('Upload'),
+                          );
+                  })
                 ],
               ),
             )
