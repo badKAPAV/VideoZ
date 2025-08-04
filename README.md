@@ -11,6 +11,12 @@ A **short video uploading social media platform** built using **Flutter & Fireba
 ✅ **User Search & Profiles** – Find other users, view their profiles, and track their posts & followers.  
 ✅ **Profile Interaction** – Manage your profile, track your followers and following count.  
 
+## Visual Overview 🆔
+https://github.com/user-attachments/assets/23c23645-9ae4-4c5f-a762-e5874042c014
+
+<img width="1080" height="2400" alt="Screenshot_20250804-185822" src="https://github.com/user-attachments/assets/43fa4bf0-6c7a-46a1-bb01-2512ed6b7652" />
+<img width="1080" height="2400" alt="Screenshot_20250804-185354" src="https://github.com/user-attachments/assets/9fda082f-c4ee-4390-b40b-818f47f0dc4d" />
+
 ### 🛠️ State Management
 🔹 **GetX for Performance** – Handles state efficiently, making the app highly responsive.  
 🔹 **Rich Library Support** – GetX provides a powerful library of widgets for smooth development.  
